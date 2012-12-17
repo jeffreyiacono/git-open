@@ -1,8 +1,10 @@
 # Github Goto
 
-Type less and open to repo webpages faster. `github-goto` is a commandline
-utility that allows you to specify a repo by name and optionally the author
-and will then open the matching resource in your web-browser.
+Type less and open to repo webpages faster from your terminal.
+
+`github-goto` is a commandline utility that allows you to specify a repo by
+name and optionally the author and will then open the matching resource in your
+web-browser.
 
 ## Usage
 
@@ -16,6 +18,18 @@ For example, if you want to open up repo `bar` for Github user `foo`, you'd run:
     $ ./github-goto.sh foo bar
 
 which will open your web-browser to the given user's repo.
+
+## Installation
+
+You can clone the repo into `~/src` and symlink to `~/bin` and use it anywhere:
+
+    $ git clone https://github.com/jeffreyiacono/github-goto.git ~/src/github-goto
+    $ ln -s ~/src/github-goto/github-goto.sh ~/bin/ghgt
+    $ ghgt -h
+    # Usage: /Users/username/bin/ghgt [user name] <repo name>
+    # Note: user name will default to $GITHUB_USER or your `git config --get github.user` entry.
+
+And make sure `~/bin` is in your `PATH`.
 
 ## I'm not using Github!
 
