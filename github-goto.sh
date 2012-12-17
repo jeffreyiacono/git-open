@@ -29,7 +29,7 @@ else
   repo=$2
 fi
 
-if [ -n $DEBUG ]; then
+if [[ -n $DEBUG ]]; then
   echo $baseurl/$username/$repo
 else
   open $baseurl/$username/$repo
