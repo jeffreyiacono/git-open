@@ -1,8 +1,8 @@
-# Github Goto
+# git-open
 
 Type less and open repo webpages faster all from your terminal.
 
-`github-goto` is a commandline utility that allows you to specify a repo name
+`git-open` is a commandline utility that allows you to specify a repo name
 and optionally the author and will then open the matching resource in your
 web-browser.
 
@@ -16,23 +16,23 @@ set if you're interested in this script after all!)
 
 For example, if you want to open up repo `bar` for Github author `foo`, you'd run:
 
-    $ ./github-goto.sh foo bar
+    $ ./git-open.sh foo bar
 
 which will open your web-browser to the given user's repo.
 
 If, on the other hand, you've configured your local git to include a github
 section and your username is set to `baz` and you want to open your `bar` repo:
 
-    $ ./github-goto.sh foo # defaults to `baz` for author name
+    $ ./git-open.sh foo # defaults to `baz` for author name
 
 ## Installation
 
 You can clone the repo into `~/src` and symlink to `~/bin` and use it anywhere:
 
-    $ git clone https://github.com/jeffreyiacono/github-goto.git ~/src/github-goto
-    $ ln -s ~/src/github-goto/github-goto.sh ~/bin/ghgt
-    $ ghgt -h
-    # Usage: /Users/username/bin/ghgt [user name] <repo name>
+    $ git clone https://github.com/jeffreyiacono/git-open.git ~/src/git-open
+    $ ln -s ~/src/git-open/git-open.sh ~/bin/git-open
+    $ git-open -h
+    # Usage: /Users/username/bin/git-open [user name] <repo name>
     # Note: user name will default to $GITHUB_USER or your `git config --get github.user` entry.
 
 And make sure `~/bin` is in your `PATH`.
