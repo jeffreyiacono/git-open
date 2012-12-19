@@ -1,23 +1,29 @@
 # Github Goto
 
-Type less and open to repo webpages faster from your terminal.
+Type less and open repo webpages faster all from your terminal.
 
-`github-goto` is a commandline utility that allows you to specify a repo by
-name and optionally the author and will then open the matching resource in your
+`github-goto` is a commandline utility that allows you to specify a repo name
+and optionally the author and will then open the matching resource in your
 web-browser.
 
 ## Usage
 
 Requires the name of the repo that you want to open. You can optionally specify
-the user that owns the repo. If you don't pass in a user name, it will fall back
+the user that owns the repo. If you don't pass in a user name it will fall back
 to what you've specified for `$GITHUB_USER` and if that is not set it will fall
-back to `whoami`.
+back to your entry for `git config --get github.user`. (You'd probably have this
+set if you're interested in this script after all!)
 
-For example, if you want to open up repo `bar` for Github user `foo`, you'd run:
+For example, if you want to open up repo `bar` for Github author `foo`, you'd run:
 
     $ ./github-goto.sh foo bar
 
 which will open your web-browser to the given user's repo.
+
+If, on the other hand, you've configured your local git to include a github
+section and your username is set to `baz` and you want to open your `bar` repo:
+
+    $ ./github-goto.sh foo # defaults to `baz` for author name
 
 ## Installation
 
@@ -31,13 +37,14 @@ You can clone the repo into `~/src` and symlink to `~/bin` and use it anywhere:
 
 And make sure `~/bin` is in your `PATH`.
 
-## I'm not using Github!
+## I'm using Github Enterprise!
 
-No problem! This may be because your company has shelled out for Github
-Enterprise, so just set `GITHUB_URL` and the script will default to this value.
+Well lucky you. Nice to see that you work for a company that can shell for it!
+In this case just set `GITHUB_URL` in your shell and the script will default to
+this value.
 
-For example, if your company hosts git at `git.my-company.com`, include this in
-your `~/.bashrc` (or where ever you'd like):
+For example, if your company hosts its github install at `git.my-company.com`,
+include this in your `~/.bashrc.local` (or where ever you'd like):
 
     export GITHUB_URL='https://git.my-company.com'
 
@@ -45,8 +52,8 @@ your `~/.bashrc` (or where ever you'd like):
 
 Again, we've got you covered: just set `GITHUB_USER` and the script will default
 to this value. If it is not set, we try to pull out what you've configured
-Github to use (via `git config --get github.user`). For the same pattern as
-above to set it for your shell.
+Github to use (via `git config --get github.user`). Use the same pattern as
+above to make your desired username available to the script.
 
 ## Contributing
 
