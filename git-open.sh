@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 function usage {
   echo "Usage: $0 [user name] [repo name]"
   echo "Note: user name will default to \$GITHUB_USER or your \`git config --get github.user\` entry."
