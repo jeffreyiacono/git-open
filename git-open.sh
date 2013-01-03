@@ -17,7 +17,7 @@ elif [ "$1" = "-h" ]; then
   usage
   exit 0
 elif [ "$1" = "-v" ]; then
-  echo "version 1.0"
+  echo "version 1.1"
   exit 0
 fi
 
