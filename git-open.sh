@@ -25,7 +25,7 @@ if [ -z "$git_repo" ]; then
   baseurl=${GITHUB_URL:-"https://github.com"}
 else
   # baseurl="https://github.com";username="jeffreyiacono";repo="git-open"
-  eval "$(echo $(git config remote.origin.url) | perl -pe 's/^(?:https?:\/\/|git@)([^:\/]+)[:\/]([^\/]+)\/([^\/]+?)(?:\.git)?$/baseurl="https:\/\/$1";username="$2";repo="$3"/')"
+  eval "$(echo $(git config remote.origin.url) | perl -pe 's/^(?:https?:\/\/|ssh:\/\/git@|git@)([^:\/]+)[:\/]([^\/]+)\/([^\/]+?)(?:\.git)?$/baseurl="https:\/\/$1";username="$2";repo="$3"/')"
 fi
 
 if [ $# = 1 ]; then
