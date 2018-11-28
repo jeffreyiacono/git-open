@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-function usage {
+usage() {
   echo "Usage: $0 [user name] [repo name]"
   echo "Note: user name will default to \$GITHUB_USER or your \`git config --get github.user\` entry."
 }
@@ -36,7 +36,7 @@ elif [ $# = 2 ]; then
   repo=$2
 fi
 
-if [[ -n $DEBUG ]]; then
+if [ -n "${DEBUG:-}" ]; then
   echo $baseurl/$username/$repo
 else
   open $baseurl/$username/$repo
