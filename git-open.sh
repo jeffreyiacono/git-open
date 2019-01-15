@@ -1,8 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 
-function usage {
+usage() {
   echo "Usage: $0 [user name] [repo name]"
   echo "Note: user name will default to \$GITHUB_USER or your \`git config --get github.user\` entry."
+}
+
+# creates variables into parent scope:
+# baseurl="https://github.com";username="jeffreyiacono";repo="git-open"
+parse_url() {
+  local url="$1"
+
+  eval "$(echo "$url" | perl -pe 's/^(?:https?:\/\/|ssh:\/\/git@|git@)([^:\/]+)[:\/]([^\/]+)\/([^\/]+?)(?:\.git)?$/baseurl="https:\/\/$1";username="$2";repo="$3"/')"
 }
 
 git_repo=$(git rev-parse --git-dir 2>/dev/null)
@@ -25,7 +33,7 @@ if [ -z "$git_repo" ]; then
   baseurl=${GITHUB_URL:-"https://github.com"}
 else
   # baseurl="https://github.com";username="jeffreyiacono";repo="git-open"
-  eval "$(echo $(git config remote.origin.url) | perl -pe 's/^(?:https?:\/\/|ssh:\/\/git@|git@)([^:\/]+)[:\/]([^\/]+)\/([^\/]+?)(?:\.git)?$/baseurl="https:\/\/$1";username="$2";repo="$3"/')"
+  parse_url "$(git config remote.origin.url)"
 fi
 
 if [ $# = 1 ]; then
@@ -36,7 +44,7 @@ elif [ $# = 2 ]; then
   repo=$2
 fi
 
-if [[ -n $DEBUG ]]; then
+if [ -n "${DEBUG:-}" ]; then
   echo $baseurl/$username/$repo
 else
   open $baseurl/$username/$repo
