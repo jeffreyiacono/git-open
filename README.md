@@ -65,7 +65,7 @@ above to make your desired username available to the script.
 
 ## License
 
-Copyright (c) 2012 Jeff Iacono
+Copyright (c) 2019 Jeff Iacono
 
 MIT License
 
