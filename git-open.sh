@@ -8,10 +8,31 @@ usage() {
 # creates variables into parent scope:
 # baseurl="https://github.com";username="jeffreyiacono";repo="git-open"
 parse_url() {
-  local url="$1"
+  local url="$1" project host proto path
 
-  eval "$(echo "$url" | perl -pe 's/^(?:https?:\/\/|ssh:\/\/git@|git@)([^:\/]+)[:\/]([^\/]+)\/([^\/]+?)(?:\.git)?$/baseurl="https:\/\/$1";username="$2";repo="$3"/')"
+  project=${url##**/}
+
+  host=${url#git@}
+  host=${host#ssh:\/\/git@}
+  host=${host#http://}
+  host=${host#https://}
+  proto=${url%$host}
+  host=${host%%[:/]*}
+
+  path=${url#$proto$host[:/]}
+  path=${path%/$project}
+
+  project=${project%.git}
+
+  # update globals
+  baseurl="https://$host"
+  username="$path"
+  repo="$project"
 }
+
+#parse_url git@github.com:glensc/git-open.git
+#parse_url https://github.com/jeffreyiacono/git-open
+#parse_url git@gitlab.com:gitlab-org/examples/mvn-example.git
 
 git_repo=$(git rev-parse --git-dir 2>/dev/null)
 
@@ -25,7 +46,7 @@ elif [ "$1" = "-h" ]; then
   usage
   exit 0
 elif [ "$1" = "-v" ]; then
-  echo "version 1.1"
+  echo "version 1.3"
   exit 0
 fi
 
