@@ -16,14 +16,14 @@ set if you're interested in this script after all!)
 
 For example, if you want to open up repo `bar` for Github author `foo`, you'd run:
 
-    $ ./git-open.sh foo bar
+    $ git-open foo bar
 
 which will open your web-browser to the given user's repo.
 
 If, on the other hand, you've configured your local git to include a github
 section and your username is set to `baz` and you want to open your `bar` repo:
 
-    $ ./git-open.sh foo # defaults to `baz` for author name
+    $ git-open foo # defaults to `baz` for author name
 
 ## Installation
 
